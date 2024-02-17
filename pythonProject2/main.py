@@ -22,9 +22,9 @@ affirmation_generator()
 affirmation_generator()
 
 #Lab 4 - Quadratic Function Calculator
-#Input quadratic equation information such as values.
-def quadratic_equation_intercept_finder(a ,b ,c):
+def quadratic_equation_intercept_finder(a,b,c):
     determinant =b**2 - 4 * a * c
+
     if determinant < 0:
         return "No intercepts have been found."
     if determinant > 0:
@@ -34,6 +34,9 @@ def quadratic_equation_intercept_finder(a ,b ,c):
     second_x_intercept = (-b - math.sqrt(determinant)) / (2 * a)
 
     return "x intercepts of " + str(first_x_intercept) + " and " + str(second_x_intercept)
-#User should enter numbers in QEIF
-result = quadratic_equation_intercept_finder(2, 4 ,6)
+#User puts in numbers here
+a = float(input("Please put in value for a\n"))
+b = float(input("Please put in value for b\n"))
+c = float(input("Please put in value for c\n"))
+result = quadratic_equation_intercept_finder(a,b,c)
 print(result)
