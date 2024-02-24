@@ -5,11 +5,11 @@ print("Make sure that numbers are within validation range")
 #End user puts in data
 #Created a function that validates user input and takes user input
 while True:
-    month=int(input("How much months would you like to go in the future?. \n"))
-    day=int(input("How much days would you like to go in the future?. \n"))
-    year=int(input("How many years would you like to go in the future?. \n"))
-    if (month >= 1 and month <=12 and
-        day >= 1 and day <= 31 and
+    month=int(input("How much months would you like to go in the future?.(Current month is 02/February) \n"))
+    day=int(input("How much days would you like to go in the future?.(Current day is 16) \n"))
+    year=int(input("How many years would you like to go in the future?.(Current year is 2024) \n"))
+    if (month >= 1 and month <=8 and
+        day >= 1 and day <= 14 and
         year >= 1 and year <= 99):
         print('Data is correct')
         break

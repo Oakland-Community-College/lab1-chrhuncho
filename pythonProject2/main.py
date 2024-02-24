@@ -22,6 +22,7 @@ affirmation_generator()
 affirmation_generator()
 
 #Lab 4 - Quadratic Function Calculator
+#Created a function that calculates intercepts
 def quadratic_equation_intercept_finder(a,b,c):
     determinant =b**2 - 4 * a * c
 
