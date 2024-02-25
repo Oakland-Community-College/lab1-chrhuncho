@@ -1,47 +1,103 @@
+#Week of 2/25/2024
+#Chris Cooper
+#Hangman Project
 import random
 print("Hello, welcome to a game of Hangman")
-print("You only have 12 guesses")
+print("---------------------------------------------")
+#Word dictionary that includes 4 words, these words are jumbled up
+wordLibrary = ["texas","michigan","ohio","idaho"]
+randomWord = random.choice(wordLibrary)
 #This is the secret word
-secret_word="california"
-letters_guessed=""
-#Player only has a number of 12 guesses
-incorrect_guesses= 12
-#This is a loop where it will break once the player has made too many failed attempts
-while incorrect_guesses <= 12:
-    user_guess=input("Enter a letter:  ")
-    if user_guess in secret_word:
-        print(f"Correct! There is one or more {user_guess} in the secret word.")
-    else:
-        incorrect_guesses -= 1
-        print(f"Incorrect. There are no {user_guess} in the secret word.{incorrect_guesses} turns left.")
-
-    #Maintain a list of all letters guessed
-    letters_guessed = letters_guessed + user_guess
-    wrongLetterCount = 0
-
-    for letter in secret_word:
-        if letter in letters_guessed:
-            print(f"{letter}", end="")
+for x in randomWord:
+    print("_", end="  ")
+#Function that creates the hangman.
+def print_gallows(wrong):
+    if(wrong == 0):
+        print("\n+---+")
+        print("     |")
+        print("     |")
+        print("     |")
+        print("    ===")
+    elif(wrong == 1):
+        print("\n+---+")
+        print("O    |")
+        print("     |")
+        print("     |")
+        print("    ===")
+    if (wrong == 2):
+        print("\n+---+")
+        print("O     |")
+        print("|     |")
+        print("     |")
+        print("    ===")
+    if (wrong == 3):
+        print("\n+---+")
+        print(" O    |")
+        print("/|    |")
+        print("     |")
+        print("    ===")
+    if (wrong == 4):
+        print("\n+---+")
+        print(" O   |")
+        print("/|\  |")
+        print("     |")
+        print("    ===")
+    if (wrong == 5):
+        print("\n+---+")
+        print(" O    |")
+        print("/|\   |")
+        print("/     |")
+        print("    ===")
+    if (wrong == 6):
+        print("\n+---+")
+        print(" O    |")
+        print("/|\    |")
+        print("/ \    |")
+        print("    ===")
+#Created a print_hidden_word function that accepts arguments
+def print_hidden_word(guessedLetters):
+    counter=0
+    rightLetters=0
+    for char in randomWord:
+        if(char in guessedLetters):
+            print(randomWord[counter], end="  ")
+            rightLetters+=1
         else:
-            print("_", end="")
-            wrongLetterCount += 1
+            print("  ", end="  ")
+        counter+=1
+    return rightLetters
+def printLines():
+    print("\r")
+    for char in randomWord:
+        print("\u203E", end="  ")
 
-    if wrongLetterCount == 0:
-        print(f"Congraulations! The secret word was: {secret_word}. You won!")
-        break
-
+length_of_word_to_guess = len(randomWord)
+amount_of_times_wrong = 0
+current_guess_index = 0
+current_letters_guessed = []
+current_letters_right = 0
+#This is the loop for all the functions above
+#Created a loop/function that asks user for input (ask_user_for_guess)
+while(amount_of_times_wrong != 6 and current_letters_right != length_of_word_to_guess):
+    print("\nLetters guessed so far: ")
+    for letter in current_letters_guessed:
+        print(letter, end="  ")
+    ask_user_for_guess = input("\nGuess a letter: ")
+    if(randomWord[current_guess_index] == ask_user_for_guess):
+        print_gallows(amount_of_times_wrong)
+    current_guess_index+=1
+    current_letters_guessed.append(ask_user_for_guess)
+    current_letters_right = print_hidden_word(current_letters_guessed)
+    printLines()
 else:
-    print("Sorry, you didnt win this time. Try again")
-
-
-
-
-
-
-
-
-
-
+    amount_of_times_wrong+=1
+    current_letters_guessed.append(ask_user_for_guess)
+    print_gallows(amount_of_times_wrong)
+    current_letters_right = print_hidden_word(current_letters_guessed)
+    printLines()
+#At the end, once all right letters, game is over is shown.
+print("Game is over")
+#Ignore SyntaxWarning lines, for some reason when making hangman arms/legs in brackets doesnt work in this version of python
 
 
 
